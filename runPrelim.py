@@ -183,43 +183,6 @@ def train_model(modelType, textBlockVecs, trainVarDict, textBlockTest, n_classes
 #        submission_df = pd.DataFrame(probas_test, columns=['class'+str(c+1) for c in range(9)])
 #        submission_df['ID'] = testVarDict['ID']
 #        submission_df.to_csv('submission_svmTest.csv', index=False)
-#        
-#        # Compute ROC curve and ROC area for each class
-#        fpr = dict()
-#        tpr = dict()
-#        roc_auc = dict()
-#        for i in range(n_classes):
-#            fpr[i], tpr[i], _ = roc_curve(testvardict[:, i], probas_test[:, i])
-#        roc_auc[i] = auc(fpr[i], tpr[i])
-#        for i in fpr:
-#            for p in tpr:
-#            print "fpr" + str(i)
-#            print "tpr" + str(p)
-#
-#    if modelType == 'CNN':
-        #https://github.com/DongjunLee/text-cnn-tensorflow/blob/master/data_loader.py
-        
-#        def exp_decay(global_step):
-#            return tf.train.exponential_decay(
-#            learning_rate=0.1, global_step=global_step,
-#            decay_steps=100, decay_rate=0.001)
-#
-#        classifier = skflow.TensorFlowDNNClassifier(hidden_units=[10, 20, 10],
-#                                                        n_classes=9, steps=800,
-#                                                        learning_rate=exp_decay)  
-#        classifier.fit(textBlockVecs, trainVarDict['Class'])
-#        probas = classifier.predict_proba(textBlockVecs)
-#        
-#        probas_test = classifier.predict_proba(textBlockTest)
-#        print 'Log Loss Training: {}'.format(log_loss(trainVarDict['Class'], probas))
-#        pred_indices = np.argmax(probas, axis=1)
-#        classes=np.array(range(1,10))
-#        preds = classes[pred_indices]  
-#        
-#        submission_df = pd.DataFrame(probas_test, columns=['class'+str(c+1) for c in range(9)])
-#        submission_df['ID'] = testVarDict['ID']
-#        submission_df.to_csv('submission_DNN3Test_SG_70.csv', index=False)
 
-#        print  'accurcacy Train: {}'.format(accuracy_score(classes[np.argmax(probas, axis=1)], preds)) 
 
 train_model('SVM', textBlockTrain,trainVarDict, textBlockTest, 9, valBlockTrain, valVarDict)
